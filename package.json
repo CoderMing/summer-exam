@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.15.4",
     "gulp": "^3.9.1",
+    "gulp-less": "^3.3.2",
     "mysql": "^2.14.1",
     "opn": "^5.1.0"
   }

@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #f4f4f4;
+  font-size: 16px;
+}
+#container {
+  width: 100vw;
+  max-width: 470px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+#container header {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  max-width: 470px;
+  height: 100vh;
+  background: #33ccff;
+}
+#container #wea,
+#container #tem {
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  color: #333333;
+  transition: all .5s;
+  z-index: 10;
+  max-width: 470px;
+}
+#container #wea {
+  padding-top: 30vh;
+  font-size: 1rem;
+}
+#container #tem {
+  font-weight: bolder;
+  font-size: 6rem;
+}
+#container aside {
+  margin-bottom: 20px;
+  position: relative;
+  padding-top: 40vh;
+}
+#container aside #tem-svg {
+  width: 100vw;
+  height: 35vw;
+  max-width: 470px;
+  max-height: 100px;
+  transition: all .5s;
+}
+#container aside .cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: #33ccff;
+  left: 0;
+  animation: showTable 1s .5s linear forwards;
+}
+@keyframes showTable {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+#container section {
+  width: 100%;
+  max-width: 470px;
+  z-index: 2;
+  box-sizing: border-box;
+  border: 10px solid transparent;
+}
+#container section #fore {
+  width: 100%;
+}
+#container section #fore .fl {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+}
+#container section #fore .fl .fl-l {
+  display: inline-block;
+  float: left;
+  width: auto;
+}
+#container section #fore .fl .fl-r {
+  display: inline-block;
+  float: right;
+  clear: right;
+  width: 55%;
+}
+#container section #fore .fl .fl-r .flr-l {
+  float: left;
+}
+#container section #fore .fl .fl-r .flr-r {
+  float: right;
+}
+@media (min-width: 470px) {
+  #wea {
+    padding-top: 5vh;
+  }
+  #tem {
+    padding-top: 10vh;
+  }
+  aside {
+    padding-top: 30vh;
+  }
+}

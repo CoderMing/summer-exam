@@ -14,17 +14,19 @@ sqlCon.connect(err => {
 
 
 let route = http.createServer((req, res) => {
-	console.log(req.url);
 	// 主文件
-	if (req.url !== '/api/') {
-		fs.readFile('src/index.html', (err, file) => {
+	if (req.url !== '/api/fc') {
+		fs.readFile('src' + req.url, (err, file) => {
 			if (err) console.log(err);
 			else {
+				res.writeHead(200, {
+					'Content-Type': ';charset=utf-8'
+				})
 				res.end(file);
 			}
 		});
 	}
-	else if (req.url === '/api/') {
+	else {
 		sqlCon.query('SELECT * FROM `data`', (err, data) => {
 			if (err) console.log(err);
 			else {
@@ -41,7 +43,7 @@ route.listen(3000, err => {
 	if (err) console.log(err);
 	else {
 		console.log("运行在3000端口");
-		opn('http://127.0.0.1:3000/');
+		opn('http://127.0.0.1:3000/index.html');
 	}
 })
 

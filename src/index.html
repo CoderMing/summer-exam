@@ -3,7 +3,38 @@
 <head>
 	<title>1231</title>
 </head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<link rel="stylesheet" href="./css/index.css">
 <body>
-312312
+
+
+<div id="container">
+	<header>
+	</header>
+	<div id="wea">晴</div>	
+	<div id="tem">35˚C</div>
+	<aside>
+		<svg id="tem-svg" width="470" height="100"></svg>
+		<div class="cover"></div>
+	</aside>
+	<section>
+
+		<div id="fore">
+			<div class="fl">
+				<div class="fl-l">{{((new Date).getMonth() + 1) + '月' + new Date().getDate() + '日'}}</div>
+				<div class="fl-r">
+					<div class="flr-l">{{a.weather}}</div>
+					<div class="flr-r">{{a.max_temp + '˚~' + a.min_temp + '˚'}}</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+</div>
+
+
+<script src="./js/index.js"></script>
 </body>
 </html>
