@@ -1,0 +1,25 @@
+{
+  "name": "summer-exam",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoderMing/summer-exam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoderMing/summer-exam/issues"
+  },
+  "homepage": "https://github.com/CoderMing/summer-exam#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "gulp": "^3.9.1",
+    "mysql": "^2.14.1",
+    "opn": "^5.1.0"
+  }
+}
