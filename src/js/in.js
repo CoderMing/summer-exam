@@ -7,21 +7,20 @@ function $$(el) {
 	return document.querySelectorAll(el);
 }
 
-var Global = {};
+let Global = {};
 
-getApi('./api/fc').then(function (data) {
+getApi('./api/fc').then(data => {
 	window.weatherData = data;
 	drawSvg(document.querySelector('svg'), window.weatherData);
 	drawData($('#fore'), data);
 });
 
 function drawData(el, data) {
-	var tem = el.innerHTML,
+	let tem = el.innerHTML,
 	    tString = '';
-	data.forEach(function (a, b, c) {
-		tString += tem.replace(/{{(.*?)}}/gi, function (_a, _b) {
+	data.forEach((a, b, c) => {
+		tString += tem.replace(/{{(.*?)}}/gi, (_a, _b) => {
 			try {
-				console.log(_b);
 				return eval(_b);
 			} catch (err) {
 				console.log(err);
@@ -32,23 +31,21 @@ function drawData(el, data) {
 	el.innerHTML = tString;
 }
 
-function drawSvg(el, arr) {
-	var etc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
-		marginY: .1,
-		stokeColor: 'black',
-		stokeWidth: 3,
-		fillLG: [{
-			color: 'blue',
-			opacity: 1
-		}, {
-			color: 'red',
-			opacity: 0
-		}],
-		fillColor: 'transparent'
-	};
-
+function drawSvg(el, arr, etc = {
+	marginY: .1,
+	stokeColor: 'black',
+	stokeWidth: 3,
+	fillLG: [{
+		color: 'blue',
+		opacity: 1
+	}, {
+		color: 'red',
+		opacity: 0
+	}],
+	fillColor: 'transparent'
+}) {
 	if (!(el && arr)) throw new Error('没参数吧');
-	var maxNum = arr[0].max_temp,
+	let maxNum = arr[0].max_temp,
 	    minNum = arr[0].min_temp,
 	    heightTemp = 0,
 	    dString = '',
@@ -60,7 +57,7 @@ function drawSvg(el, arr) {
 	    elString = '';
 
 	// 找最大最小 计算差值
-	arr.forEach(function (a) {
+	arr.forEach(a => {
 		maxNum = maxNum < a.max_temp ? a.max_temp : maxNum;
 		minNum = minNum > a.min_temp ? a.min_temp : minNum;
 	});
@@ -88,23 +85,19 @@ function drawSvg(el, arr) {
 
 	// 贝塞尔太恶心了....
 	dString += 'M0' + ' ' + sDraw + ' ';
-	arr.forEach(function (a, b, c) {
+	arr.forEach((a, b, c) => {
 		dString += 'L' + widthTemp * (b + 1) + ' ' + (sDraw + heightTemp * (maxNum - a.max_temp)) + ' ';
 	});
 	dString += 'M0' + ' ' + (sDraw + heightTemp * 30) + ' ';
-	arr.forEach(function (a, b, c) {
+	arr.forEach((a, b, c) => {
 		dString += 'L' + widthTemp * (b + 1) + ' ' + (sDraw + heightTemp * (maxNum - a.min_temp)) + ' ';
 	});
 	elString += '<path d="' + dString + '" fill="' + etc.fillColor + '" stroke="' + etc.stokeColor + '" stroke-width="' + 'strokeWidth' + '"/>';
 	el.innerHTML += elString;
 }
 
-window.addEventListener('touchmove', function () {
-	console.log(document.body.scrollTop);
-});
-
-setInterval(function (_) {
-	[$('section')].forEach(function (a) {
+setInterval(_ => {
+	[$('section')].forEach(a => {
 		if (document.body.scrollTop < 190) {
 			a.style.background = 'rgba(255,255,255,' + document.body.scrollTop * .005 + ')';
 		}
@@ -130,11 +123,11 @@ setInterval(function (_) {
 }, 20);
 
 function getApi(url) {
-	return new Promise(function (resolve, reject) {
-		var a = new XMLHttpRequest();
+	return new Promise((resolve, reject) => {
+		let a = new XMLHttpRequest();
 		a.open('GET', url, true);
 		a.send();
-		a.addEventListener('load', function (e) {
+		a.addEventListener('load', e => {
 			try {
 				resolve(JSON.parse(e.target.responseText));
 			} catch (err) {
@@ -143,3 +136,4 @@ function getApi(url) {
 		});
 	});
 }
+
